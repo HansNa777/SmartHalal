@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+{{=<% %>=}}
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" type="text/css" href="/common/common.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+<div id="app">
+  <div class="mx-5 px-3 my-4">
+    <div class="mx-5 px-5">
+      <top-part></top-part>
+    </div>
+  </div>
+
+  <div>
+    <img id="banner-img" src="/common/icBanner.png" class="w-100">
+  </div>
+
+  <div class="my-4">&nbsp;</div>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+
+      <!-- static fields -->
+      <div v-for="k in static_keys" :key="k" class="d-flex my-1" >
+        <div class="w-rem-10 text-right mt-1 mr-3">
+          {{k}}
+        </div>
+        <div class="flex-grow-1">
+          {{data[k]}}
+        </div>
+      </div>
+
+      <!-- certifier -->
+      <div class="d-flex my-1" >
+        <div class="w-rem-10 text-right mt-1 mr-3">
+          certifier
+        </div>
+        <div class="flex-grow-1">
+          <select class="form-control" v-model="data.certifier_id">
+            <option v-for="certer in certifiers" :value="certer.id">{{certer.name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- fields -->
+      <div v-for="k in text_keys" :key="k" class="d-flex my-1" >
+        <div class="w-rem-10 text-right mt-1 mr-3">
+          {{k}}
+        </div>
+        <div class="flex-grow-1">
+          <input type="text" class="form-control" v-model="data[k]"></input>
+        </div>
+      </div>
+      <div v-for="k in special_keys" :key="k" class="d-flex my-1" >
+        <div class="w-rem-10 text-right mt-1 mr-3">
+          {{k}}
+        </div>
+        <div class="flex-grow-1">
+          <textarea class="form-control" rows="10" v-model="data[k]"></textarea>
+        </div>
+      </div>
+
+
+      <!-- err -->
+      <div class="mt-3 alert alert-danger" v-if="confirm_err.length > 0">
+        <div v-for="item in confirm_err">
+          {{item}}
+        </div>
+      </div>
+
+      <!-- btn -->
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn mt-3 px-5" @click="onAdd" style="color:white;background-color:rgb(55,101,55)">추가 하기</button>
+      </div>
+
+    </div>
+  </div>
+
+  <form id="add-form" class="d-none" method="POST" action="/certificates/add" encType="multipart/form-data">
+    <input type="hidden" v-for="k in keys" :key="k" :name="k" :value="data[k]" ></input>
+  </form>
+
+  <div class="my-5">&nbsp;</div>
+
+  <bottom-part></bottom-part>
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script src="https://unpkg.com/vuejs-paginate@latest"></script>
+<script src="/certificates/add.js"></script>
+<script src="/widgets/top-part.js"></script>
+<script src="/widgets/bottom-part.js"></script>
+
+<script>
+    init(
+        <%&keys%>,
+        <%&static_keys%>,
+        <%&special_keys%>,
+        <%&data%>,
+        <%&certifiers%>,
+    );
+</script>
+

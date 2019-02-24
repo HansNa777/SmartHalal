@@ -1,0 +1,23 @@
+{
+  "name": "map_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "consolidate": "^0.15.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.4",
+    "mustache-express": "^1.2.8",
+    "mysql2": "^1.6.4",
+    "query-string": "^6.2.0",
+    "sequelize": "^4.42.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon ./lib/server.js",
+    "debug": "nodemon ./lib/server.js --debug"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,25 @@
+
+.vertical-bar {
+  height: 300px;
+  width: 0px;
+  position: absolute;
+  z-index:-10;
+  transform:translate(0%,-100%);
+  margin-left: 9.5pt;
+  margin-bottom: 10px;
+  border-left:solid;
+  border-color:rgb(55,101,55);
+}
+
+.white-vertical-bar {
+  height: 300px;
+  width: 0px;
+  position: absolute;
+  z-index:-5;
+  transform:translate(0%,-100%);
+  margin-left: 9.5pt;
+  margin-bottom: 10px;
+  border-left:solid;
+  border-color:white;
+}
+
